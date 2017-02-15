@@ -25,6 +25,14 @@ Version: 0.0.1
  * for more info:
  *
  * https://codex.wordpress.org/Function_Reference/register_post_type
+ *
+ * WordPress has a certain number of built in features that we can enable for
+ * our posttype. There is also a generic feature that we can use to store more
+ * information, called meta fields. To use this feature, there is a useful
+ * open source plugin called metabox. You can read more about this plugin and 
+ * download it here:
+ *
+ * https://metabox.io/docs/
  */
 function custom_posttype_init() {
 	register_post_type("thing",array(
@@ -59,6 +67,18 @@ add_action("init","custom_posttype_init");
  * to make sure we don't mess up how other posts will appear. Once we make
  * sure that the request is actually for a thing, we can return any HTML
  * we want to represent how the thing should appear.
+ *
+ * There are certaing situations and configurations that can cause the URL to 
+ * not work, and we get some sort of error message saying that the page 
+ * does not exist. If you have these kind of unexpected errors, you can 
+ * experiment with the prmalink settings, under Settings >> Permalinks in
+ * the WordPress admin interface. Another cause of unexpected errors can be
+ * if you use Apache and don't have mod_rewrite installed or configured.
+ *
+ * The $post variable we get from the get_post function is of the type
+ * WP_Post. You can read more about this type of object here:
+ *
+ * https://codex.wordpress.org/Class_Reference/WP_Post
  */
 function custom_posttype_content($content) {
 	$post=get_post();
